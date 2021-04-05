@@ -1,0 +1,19 @@
+{
+  "name": "react-generate-components",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "rgc": "src/index.js"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Aneerudh P",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.1.0",
+    "fs-extra": "^9.1.0"
+  }
+}
