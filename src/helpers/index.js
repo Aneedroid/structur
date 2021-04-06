@@ -29,7 +29,16 @@ const createFile = (readFilePath, writeFilePath, replaceComponentName, replaceCo
     }
 };
 
+const deleteFile = (componentPath) => {
+    try {
+        fs.rmdirSync(componentPath);
+    } catch(err) {
+        console.log('Error while deleting!', err)
+    }
+};
+
 module.exports = {
     initializeTemplatesAndConfig,
-    createFile
+    createFile,
+    deleteFile
 }
