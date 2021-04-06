@@ -7,30 +7,30 @@ const { initializeTemplatesAndConfig, createFile } = require('./helpers/index.js
 
 program
   .version('1.0.0')
-  .description('React generate components');
+  .description('Structur');
 
 program
   .command('init')
-  .description('Initialize RGC templates')
+  .description('Initialize Structur templates')
   .action(async () => await initializeTemplatesAndConfig(
-    path.resolve(__dirname, '..', 'rgc-templates'),
-    path.resolve(process.cwd(), 'rgc-templates/'),
-    path.resolve(process.cwd(), 'rgc.json')
+    path.resolve(__dirname, '..', 'templates'),
+    path.resolve(process.cwd(), 'templates/'),
+    path.resolve(process.cwd(), 'structur.json')
   ));
 
   program
   .command('create <fullComponentName>')
-  .description('Bootstraps the necessary files for a react component')
+  .description('Bootstraps the necessary files for a component')
   .action(async (fullComponentName) => {
     try {
-        const configObj = await fs.readJson(path.resolve(process.cwd(), 'rgc.json'));
+        const configObj = await fs.readJson(path.resolve(process.cwd(), 'structur.json'));
 
         const localComponentName = fullComponentName.split('/').pop();
         const localComponentDir = path.resolve(configObj.componentsPath, fullComponentName);
 
         const componentExists = await fs.pathExists(localComponentDir);
 
-        if(componentExists) {
+        if (componentExists) {
           console.log('Component already exists!');
           return;
         }
@@ -41,9 +41,9 @@ program
         const testFileDir = path.resolve(configObj.testsPath, fullComponentName);
         const testFilePath = path.resolve(testFileDir, `${localComponentName}.${configObj.testStyle}.jsx`);
 
-        const localTemplateDir = path.resolve(process.cwd(), 'rgc-templates');
+        const localTemplateDir = path.resolve(process.cwd(), 'templates');
 
-        //TODO: Can also make it such a way - Number of files in rgc-templates = number of files to create.
+        //TODO: Can also make it such a way - Number of files in templates = number of files to create.
 
         // Component.
         createFile(path.resolve(localTemplateDir, 'Component.template.jsx'), localComponentFilePath, localComponentName);
