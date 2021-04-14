@@ -3,7 +3,7 @@ const program = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
 
-const { initializeTemplatesAndConfig, createFile } = require('./helpers/index.js');
+const { initializeTemplatesAndConfig, createFile, deleteFile } = require('./helpers/index.js');
 
 program
   .version('1.0.0')
@@ -60,5 +60,21 @@ program
         console.error('Error while creating the component ', err);
     }
   });
+
+  program
+  .command('delete <fileDirectory>')
+  .description('Deletes a directory')
+  .action(async (fileDirectory) => {
+    try {
+
+        deleteFile(fileDirectory);
+
+        console.log('Component deleted!');
+
+    } catch (err) {
+        console.error('Error while deleting the component ', err);
+    }
+  });
+
 
 program.parse(process.argv);

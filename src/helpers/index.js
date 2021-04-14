@@ -29,9 +29,9 @@ const createFile = (readFilePath, writeFilePath, replaceComponentName, replaceCo
     }
 };
 
-const deleteFile = (componentPath) => {
+const deleteFile = (filePath) => {
     try {
-        fs.rmdirSync(componentPath);
+        fs.rmdirSync(filePath);
     } catch(err) {
         console.log('Error while deleting!', err)
     }
